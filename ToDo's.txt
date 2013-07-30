@@ -1,0 +1,1 @@
+--> buy port expander or bit-shift-register ( Rasperry pi has not enough pins )
