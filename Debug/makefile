@@ -8,7 +8,7 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include src/GPIO/subdir.mk
+-include src/GPIO/wiringPi/subdir.mk
 -include src/subdir.mk
 -include subdir.mk
 -include objects.mk
@@ -48,7 +48,7 @@ main-build: BinaryClock.a
 BinaryClock.a: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cygwin C++ Linker'
-	arm-unknown-linux-gnueabi-g++  -o "BinaryClock.a" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-unknown-linux-gnueabi-g++ -L"c:\cygwin\opt\cross\x-tools\arm-unknown-linux-gnueabi\arm-unknown-linux-gnueabi\sysroot\usr\lib" -o "BinaryClock.a" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

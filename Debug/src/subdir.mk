@@ -6,7 +6,7 @@
 CPP_SRCS += \
 ../src/control.cpp \
 ../src/converttobin.cpp \
-../src/initilizer.cpp \
+../src/initializer.cpp \
 ../src/main.cpp \
 ../src/pin.cpp \
 ../src/time.cpp 
@@ -14,7 +14,7 @@ CPP_SRCS += \
 OBJS += \
 ./src/control.o \
 ./src/converttobin.o \
-./src/initilizer.o \
+./src/initializer.o \
 ./src/main.o \
 ./src/pin.o \
 ./src/time.o 
@@ -22,7 +22,7 @@ OBJS += \
 CPP_DEPS += \
 ./src/control.d \
 ./src/converttobin.d \
-./src/initilizer.d \
+./src/initializer.d \
 ./src/main.d \
 ./src/pin.d \
 ./src/time.d 

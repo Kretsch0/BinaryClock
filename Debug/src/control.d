@@ -32,8 +32,8 @@ src/control.d: ../src/control.cpp ../src/control.h \
  C:/Users/Jendrik/Desktop/boost/boost/smart_ptr/detail/yield_k.hpp \
  C:/Users/Jendrik/Desktop/boost/boost/memory_order.hpp \
  C:/Users/Jendrik/Desktop/boost/boost/smart_ptr/detail/operator_bool.hpp \
- ../src/initilizer.h ../src/time.h ../src/converttobin.h ../src/pin.h \
- ../src/GPIO/gpioUtil.h
+ ../src/initializer.h ../src/time.h ../src/converttobin.h ../src/pin.h \
+ ../src/GPIO/wiringPi/wiringPi.h
 
 ../src/control.h:
 
@@ -103,7 +103,7 @@ C:/Users/Jendrik/Desktop/boost/boost/memory_order.hpp:
 
 C:/Users/Jendrik/Desktop/boost/boost/smart_ptr/detail/operator_bool.hpp:
 
-../src/initilizer.h:
+../src/initializer.h:
 
 ../src/time.h:
 
@@ -111,4 +111,4 @@ C:/Users/Jendrik/Desktop/boost/boost/smart_ptr/detail/operator_bool.hpp:
 
 ../src/pin.h:
 
-../src/GPIO/gpioUtil.h:
+../src/GPIO/wiringPi/wiringPi.h:
