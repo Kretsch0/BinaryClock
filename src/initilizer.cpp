@@ -1,11 +1,12 @@
 #include "initilizer.h"
-#include "GPIO/gpioUtil.h"
+#include "GPIO/wiringPi/wiringPi.h"
+#include "GPIO/wiringPi/sr595.h"
 #include <iostream>
 using namespace std;
 
 Initilizer::Initilizer() {
+	setUpWiringPi();
 	pinMapping();
-
 }
 
 Initilizer::~Initilizer() {}
@@ -43,27 +44,25 @@ void Initilizer::pinMapping()
 	 */
 
 	/*
-	 * INFO: The "Rasperry pi" has not enough pins for the binary clock.
-	 * 	     Thus the two following blocks are only to see that the logic works fine.
-	 * 	     With the blocks we see the seconds moving.
-	 * TODO: Buy a bit-shift-register or port expander or export the code to a
-	 * 		 Arduino ( possible that give some errors with external libraries like boost )
+	 * INFO: I bought a Bit shifting register of type (74HC959N).
+	 * The Second parameter is the pin value this was emulated
+	 * by the "wiringPi"-lib.
 	 */
 
-	boost::shared_ptr<Pin> lPin0_0(new Pin("lPin0_0", 14, true)); // the third parameter says its a output signal
-	boost::shared_ptr<Pin> lPin1_0(new Pin("lPin1_0", 15, true));
-	boost::shared_ptr<Pin> lPin2_0(new Pin("lPin2_0", 18, true));
-	boost::shared_ptr<Pin> lPin3_0(new Pin("lPin3_0", 23, true));
+	boost::shared_ptr<Pin> lPin0_0(new Pin("lPin0_0", 253));
+	boost::shared_ptr<Pin> lPin1_0(new Pin("lPin1_0", 254));
+	boost::shared_ptr<Pin> lPin2_0(new Pin("lPin2_0", 255));
+	boost::shared_ptr<Pin> lPin3_0(new Pin("lPin3_0", 256));
 	lTempPins.push_back(lPin0_0);
 	lTempPins.push_back(lPin1_0);
 	lTempPins.push_back(lPin2_0);
 	lTempPins.push_back(lPin3_0);
 	lPins.push_back(lTempPins);
 
-	boost::shared_ptr<Pin> lPin0_1 (new Pin("lPin0_1", 11, true));
-	boost::shared_ptr<Pin> lPin1_1 (new Pin("lPin1_1", 9, true));
-	boost::shared_ptr<Pin> lPin2_1 (new Pin("lPin2_1", 10, true));
-	boost::shared_ptr<Pin> lPin3_1 (new Pin("lPin3_1", 22, true));
+	boost::shared_ptr<Pin> lPin0_1 (new Pin("lPin0_1", 257));
+	boost::shared_ptr<Pin> lPin1_1 (new Pin("lPin1_1", 258));
+	boost::shared_ptr<Pin> lPin2_1 (new Pin("lPin2_1", 259));
+	boost::shared_ptr<Pin> lPin3_1 (new Pin("lPin3_1", Pin::C_UNDEFINED));
 	lTempPins.clear();
 	lTempPins.push_back(lPin0_1);
 	lTempPins.push_back(lPin1_1);
@@ -71,10 +70,10 @@ void Initilizer::pinMapping()
 	lTempPins.push_back(lPin3_1);
 	lPins.push_back(lTempPins);
 
-	boost::shared_ptr<Pin> lPin0_2 (new Pin("lPin0_2", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin1_2 (new Pin("lPin1_2", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin2_2 (new Pin("lPin2_2", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin3_2 (new Pin("lPin3_2", Pin::C_UNDEFINED, true));
+	boost::shared_ptr<Pin> lPin0_2 (new Pin("lPin0_2", 246));
+	boost::shared_ptr<Pin> lPin1_2 (new Pin("lPin1_2", 247));
+	boost::shared_ptr<Pin> lPin2_2 (new Pin("lPin2_2", 248));
+	boost::shared_ptr<Pin> lPin3_2 (new Pin("lPin3_2", 249));
 	lTempPins.clear();
 	lTempPins.push_back(lPin0_2);
 	lTempPins.push_back(lPin1_2);
@@ -82,10 +81,10 @@ void Initilizer::pinMapping()
 	lTempPins.push_back(lPin3_2);
 	lPins.push_back(lTempPins);
 
-	boost::shared_ptr<Pin> lPin0_3 (new Pin("lPin0_3", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin1_3 (new Pin("lPin1_3", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin2_3 (new Pin("lPin2_3", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin3_3 (new Pin("lPin3_3", Pin::C_UNDEFINED, true));
+	boost::shared_ptr<Pin> lPin0_3 (new Pin("lPin0_3", 250));
+	boost::shared_ptr<Pin> lPin1_3 (new Pin("lPin1_3", 251));
+	boost::shared_ptr<Pin> lPin2_3 (new Pin("lPin2_3", 252));
+	boost::shared_ptr<Pin> lPin3_3 (new Pin("lPin3_3", Pin::C_UNDEFINED));
 	lTempPins.clear();
 	lTempPins.push_back(lPin0_3);
 	lTempPins.push_back(lPin1_3);
@@ -93,10 +92,10 @@ void Initilizer::pinMapping()
 	lTempPins.push_back(lPin3_3);
 	lPins.push_back(lTempPins);
 
-	boost::shared_ptr<Pin> lPin0_4 (new Pin("lPin0_4", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin1_4 (new Pin("lPin1_4", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin2_4 (new Pin("lPin2_4", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin3_4 (new Pin("lPin3_4", Pin::C_UNDEFINED, true));
+	boost::shared_ptr<Pin> lPin0_4 (new Pin("lPin0_4", 240));
+	boost::shared_ptr<Pin> lPin1_4 (new Pin("lPin1_4", 241));
+	boost::shared_ptr<Pin> lPin2_4 (new Pin("lPin2_4", 242));
+	boost::shared_ptr<Pin> lPin3_4 (new Pin("lPin3_4", 243));
 	lTempPins.clear();
 	lTempPins.push_back(lPin0_4);
 	lTempPins.push_back(lPin1_4);
@@ -104,10 +103,10 @@ void Initilizer::pinMapping()
 	lTempPins.push_back(lPin3_4);
 	lPins.push_back(lTempPins);
 
-	boost::shared_ptr<Pin> lPin0_5 (new Pin("lPin0_5", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin1_5 (new Pin("lPin1_5", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin2_5 (new Pin("lPin2_5", Pin::C_UNDEFINED, true));
-	boost::shared_ptr<Pin> lPin3_5 (new Pin("lPin3_5", Pin::C_UNDEFINED, true));
+	boost::shared_ptr<Pin> lPin0_5 (new Pin("lPin0_5", 244));
+	boost::shared_ptr<Pin> lPin1_5 (new Pin("lPin1_5", 245));
+	boost::shared_ptr<Pin> lPin2_5 (new Pin("lPin2_5", Pin::C_UNDEFINED));
+	boost::shared_ptr<Pin> lPin3_5 (new Pin("lPin3_5", Pin::C_UNDEFINED));
 	lTempPins.clear();
 	lTempPins.push_back(lPin0_5);
 	lTempPins.push_back(lPin1_5);
@@ -116,4 +115,16 @@ void Initilizer::pinMapping()
 	lPins.push_back(lTempPins);
 
 	this->lPins = lPins;
+}
+
+/*
+ * The setup for the WiringPi library
+ */
+void Initilizer::setUpWiringPi()
+{
+	wiringPiSetup () ;
+
+	// 24 pins = 240 Pin base
+	//    Use wiringPi pins 0, 1 & 2 for data, clock and latch
+	sr595Setup (240, 24, 0, 1, 2) ; //own function
 }

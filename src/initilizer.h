@@ -28,6 +28,11 @@ private:
 	 */
 	void pinMapping();
 
+	/*
+	 * The setup for the WiringPi library
+	 */
+	void setUpWiringPi();
+
 	std::vector< std::vector<boost::shared_ptr<Pin> > > lPins;
 };
 
