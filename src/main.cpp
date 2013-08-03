@@ -2,11 +2,11 @@
 #include <unistd.h>
 
 #include "control.h"
-#include "initilizer.h"
+#include "Initializer.h"
 
 int main()
 {
-	boost::shared_ptr<Initilizer> lInit(new Initilizer());
+	boost::shared_ptr<Initializer> lInit(new Initializer());
 	boost::shared_ptr<Control> lControl(new Control(lInit->getPins()));
 
 

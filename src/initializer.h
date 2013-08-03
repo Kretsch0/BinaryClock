@@ -12,10 +12,10 @@
 #include "converttobin.h"
 #include "pin.h"
 #include "boost/shared_ptr.hpp"
-class Initilizer {
+class Initializer {
 public:
-	Initilizer();
-	virtual ~Initilizer();
+	Initializer();
+	virtual ~Initializer();
 
 	const std::vector<std::vector<boost::shared_ptr<Pin> > > &getPins() const {
 		return lPins;

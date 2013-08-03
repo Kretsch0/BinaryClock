@@ -2,7 +2,7 @@
 #define CONTROL_H_
 #include <vector>
 #include "boost/shared_ptr.hpp"
-#include "initilizer.h"
+#include "initializer.h"
 
 class Control {
 public:

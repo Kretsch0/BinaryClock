@@ -1,21 +1,21 @@
-#include "initilizer.h"
+#include "initializer.h"
 #include "GPIO/wiringPi/wiringPi.h"
 #include "GPIO/wiringPi/sr595.h"
 #include <iostream>
 using namespace std;
 
-Initilizer::Initilizer() {
+Initializer::Initializer() {
 	setUpWiringPi();
 	pinMapping();
 }
 
-Initilizer::~Initilizer() {}
+Initializer::~Initializer() {}
 
 /*
  * This instantiates the connection between the GPIO-PIN and the Pin-Object
  * witch we use to interact with the GPIO port
  */
-void Initilizer::pinMapping()
+void Initializer::pinMapping()
 {
 	std::vector< std::vector<boost::shared_ptr<Pin> > > lPins;
 	std::vector<boost::shared_ptr<Pin> > lTempPins;
@@ -120,7 +120,7 @@ void Initilizer::pinMapping()
 /*
  * The setup for the WiringPi library
  */
-void Initilizer::setUpWiringPi()
+void Initializer::setUpWiringPi()
 {
 	wiringPiSetup () ;
 
