@@ -2,12 +2,12 @@
 #define PIN_H_
 
 #include <string>
-#include "GPIO/gpioUtil.h"
+#include "GPIO/wiringPi/wiringPi.h"
 class Pin {
 public:
 	static const int C_UNDEFINED = 0;
 
-	explicit Pin(const std::string& lName, const int lPinNumber, const bool lSetAsOutPut);
+	explicit Pin(const std::string& lName, const int lPinNumber);
 	virtual ~Pin();
 
 	/*
@@ -38,12 +38,6 @@ public:
 	}
 
 private:
-
-	/*
-	 * Set a pin as a output pin
-	 */
-	void setAsOutPut();
-
 
 	const std::string mName;
 	const int mPinNumber;
